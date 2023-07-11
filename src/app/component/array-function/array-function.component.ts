@@ -72,14 +72,14 @@ export class ArrayFunctionComponent implements OnInit {
     )
 
     //subject
-    this.subject.next(1)
-    this.subject.next(1)
-    this.subject.next(1)
     this.subject.subscribe((res) => console.log('subject', res))
+    this.subject.next(1)
+    this.subject.next(1)
+    this.subject.next(1)
 
     //bheviour Subject
-    this.bheviourSubject.next('1');
-    this.bheviourSubject.next('jigg')
+    // this.bheviourSubject.next('1');
+    // this.bheviourSubject.next('jigg')
     this.bheviourSubject.subscribe((res) => console.log('bheviour subject', res))
   }
 }
