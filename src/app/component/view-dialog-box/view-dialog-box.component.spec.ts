@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewDailogBoxComponent } from './view-dailog-box.component';
+import { ViewDialogBoxComponent } from './view-dialog-box.component';
 
-describe('ViewDailogBoxComponent', () => {
-  let component: ViewDailogBoxComponent;
-  let fixture: ComponentFixture<ViewDailogBoxComponent>;
+describe('ViewDialogBoxComponent', () => {
+  let component: ViewDialogBoxComponent;
+  let fixture: ComponentFixture<ViewDialogBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewDailogBoxComponent ]
+      declarations: [ ViewDialogBoxComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewDailogBoxComponent);
+    fixture = TestBed.createComponent(ViewDialogBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

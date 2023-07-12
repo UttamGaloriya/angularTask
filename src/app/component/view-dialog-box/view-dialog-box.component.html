@@ -1,0 +1,28 @@
+<h2>User Details</h2>
+<div class="list">
+    <div class="position-list">
+        <span class="position">Name</span>
+        <span class="position-name">{{data?.name}}</span>
+    </div>
+    <div class="position-list">
+        <span class="position">Username</span>
+        <span class="position-name">{{data.username}}</span>
+    </div>
+    <div class="position-list">
+        <span class="position">Email</span>
+        <span class="position-name">{{data.email}}</span>
+    </div>
+    <div class="position-list">
+        <span class="position">Phone</span>
+        <span class="position-name">{{data.phone}}</span>
+    </div>
+    <div class="position-list">
+        <span class="position">Website</span>
+        <span class="position-name">{{data.website}}</span>
+    </div>
+</div>
+<!-- <div class="position-list">
+    <span class="position"></span>
+    <span class="position-name"></span>
+</div> -->
+<button type="button" mat-raised-button (click)=" onNoClick()" color="warn">Close</button>

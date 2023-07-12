@@ -47,4 +47,4 @@ const data = [
   imports: [CommonModule, data],
   exports: [data],
 })
-export class MatmodualsModule { }
+export class MaterialModuleModule { }

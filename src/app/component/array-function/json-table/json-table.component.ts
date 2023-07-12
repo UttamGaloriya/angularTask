@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
-import { ViewDailogBoxComponent } from '../../view-dailog-box/view-dailog-box.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiData } from 'src/app/api-data';
+import { ViewDialogBoxComponent } from '../../view-dialog-box/view-dialog-box.component';
 
 @Component({
   selector: 'app-json-table',
@@ -21,8 +21,8 @@ export class JsonTableComponent implements OnInit {
   }
   displayedColumns: string[] = ['position', 'name', 'username', 'website', 'email', 'phone', 'action'];
   openDialog(data: ApiData): void {
-    const dialogRef = this.dialog.open(ViewDailogBoxComponent, {
-      width: '700px',
+    const dialogRef = this.dialog.open(ViewDialogBoxComponent, {
+      width: '500px',
       data: data,
     });
   }

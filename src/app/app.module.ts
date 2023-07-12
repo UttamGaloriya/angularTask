@@ -7,22 +7,23 @@ import { ArrayFunctionComponent } from './component/array-function/array-functio
 import { JsonTableComponent } from './component/array-function/json-table/json-table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatmodualsModule } from './matmoduals/matmoduals.module';
-import { ViewDailogBoxComponent } from './component/view-dailog-box/view-dailog-box.component';
+
+import { ViewDialogBoxComponent } from './component/view-dialog-box/view-dialog-box.component';
+import { MaterialModuleModule } from './material-module/material-module.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArrayFunctionComponent,
     JsonTableComponent,
-    ViewDailogBoxComponent
+    ViewDialogBoxComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatmodualsModule
+    MaterialModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
