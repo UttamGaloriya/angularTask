@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="navbar">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Routing</span>
+    <span class="example-spacer">
+        <a routerLink="/first" class="link">First</a>
+        <a routerLink="/second" class="link">Second</a>
+        <a routerLink="/lazy/second" class="link">lazyChild</a>
+
+    </span>
+    <a routerLink="/lazy">Lazy</a>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+    </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

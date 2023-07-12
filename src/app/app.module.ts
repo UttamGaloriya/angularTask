@@ -10,13 +10,23 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ViewDialogBoxComponent } from './component/view-dialog-box/view-dialog-box.component';
 import { MaterialModuleModule } from './material-module/material-module.module';
+import { FirstComponent } from './routing/first/first.component';
+import { SecondComponent } from './routing/second/second.component';
+import { PageNotFoundComponentComponent } from './component/page-not-found-component/page-not-found-component.component';
+import { NavbarComponent } from './routing/navbar/navbar.component';
+import { TopComponent } from './routing/top/top.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArrayFunctionComponent,
     JsonTableComponent,
-    ViewDialogBoxComponent
+    ViewDialogBoxComponent,
+    FirstComponent,
+    SecondComponent,
+    PageNotFoundComponentComponent,
+    NavbarComponent,
+    TopComponent
   ],
   imports: [
     BrowserModule,

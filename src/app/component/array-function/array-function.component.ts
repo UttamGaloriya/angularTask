@@ -7,45 +7,43 @@ import { filter, map, switchMap } from 'rxjs/operators';
   templateUrl: './array-function.component.html',
   styleUrls: ['./array-function.component.scss']
 })
-export class ArrayFunctionComponent implements OnInit {
+export class ArrayFunctionComponent {
 
   subject = new Subject<number>();
-  bheviourSubject = new BehaviorSubject<string>("uttam galoriya")
+  behaviorSubject = new BehaviorSubject<string>("uttam galoriya")
   numberArr: Observable<number> = from([4, 8, 11, 70, 4, 9, 10])
   numberArray: number[] = [7, 8, 11, 70, 4, 9, 10,]
   viewArr: number[] = []
-  constructor() { }
 
-  ngOnInit(): void {
 
-  }
+
   //javascript array method
   arrayMethod() {
     const array = [...this.numberArray]
     console.log(this.numberArray)
-    // //filter method
-    // let filterArray = array.filter((res) => res > 10)
-    // console.log("Filter Array greataer then 10", filterArray)
+    //filter method
+    let filterArray = array.filter((res) => res > 10)
+    console.log("Filter Array greater then 10", filterArray)
 
-    // //map method
-    // let mapArray = array.map((res, index) => res * 10 * index)
-    // console.log("Map method", mapArray)
+    //map method
+    let mapArray = array.map((res, index) => res * 10 * index)
+    console.log("Map method", mapArray)
 
-    // //slice
-    // let sliceArray = array.slice(2, 5);
-    // console.log("sliceArray  index  start 2 to 4", sliceArray)
+    //slice
+    let sliceArray = array.slice(2, 5);
+    console.log("sliceArray  index  start 2 to 4", sliceArray)
 
-    // //splice
-    // const spliceArray = array.splice(1, 3, 999)
-    // console.log('Spliced element ', array)
+    //splice
+    const spliceArray = array.splice(1, 3, 999)
+    console.log('Spliced element ', array)
 
-    // //push
-    // array.push(...[6, 7]);
-    // console.log("array", array)
+    //push
+    array.push(...[6, 7]);
+    console.log("array", array)
 
-    // //pop
-    // var poppedValue = array.pop();
-    // console.log(`Popped value ${poppedValue}`)
+    //pop
+    var poppedValue = array.pop();
+    console.log(`Popped value ${poppedValue}`)
 
     //shift
     var shiftArray = array.shift()
@@ -53,11 +51,14 @@ export class ArrayFunctionComponent implements OnInit {
 
     //unshift
     var unshiftArray = array.unshift(1, 2, 3)
-    console.log(`${unshiftArray} is unshifted `, array)
+    console.log(`${unshiftArray} is un shifted `, array)
 
-    console.log("---------------------------------")
+
   }
-  //observal Method
+
+
+
+  //observable Method
   observalMethod() {
     //map and filter in rxjs
     let newArray$ = this.numberArr.pipe(
@@ -79,10 +80,10 @@ export class ArrayFunctionComponent implements OnInit {
     this.subject.next(1)
     this.subject.next(1)
 
-    //bheviour Subject
-    // this.bheviourSubject.next('1');
-    // this.bheviourSubject.next('jigg')
-    this.bheviourSubject.subscribe((res: string) => console.log('bheviour subject', res))
+    //behaviorSubject 
+    this.behaviorSubject.next('1');
+    this.behaviorSubject.next('name')
+    this.behaviorSubject.subscribe((res: string) => console.log('behaviorSubject ', res))
 
   }
 }
