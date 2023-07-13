@@ -5,5 +5,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<input type="text" placeholder="enter here" #val>
+<button (click)="submitvalue(val)">submit</button>
+<app-life-cycle [data]="title">{{title}}</app-life-cycle>
 <router-outlet></router-outlet>

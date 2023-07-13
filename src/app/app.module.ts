@@ -15,6 +15,8 @@ import { SecondComponent } from './routing/second/second.component';
 import { PageNotFoundComponentComponent } from './component/page-not-found-component/page-not-found-component.component';
 import { NavbarComponent } from './routing/navbar/navbar.component';
 import { TopComponent } from './routing/top/top.component';
+import { LifeCycleComponent } from './component/life-cycle/life-cycle.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,14 +28,17 @@ import { TopComponent } from './routing/top/top.component';
     SecondComponent,
     PageNotFoundComponentComponent,
     NavbarComponent,
-    TopComponent
+    TopComponent,
+    LifeCycleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModuleModule
+    MaterialModuleModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

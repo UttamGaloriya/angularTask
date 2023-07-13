@@ -8,6 +8,7 @@ import { YourGuardGuard } from './services/your-guard.guard';
 import { TopComponent } from './routing/top/top.component';
 import { NewsResolver } from './routing/news.resolver';
 import { TableResolver } from './services/table.resolver';
+import { LifeCycleComponent } from './component/life-cycle/life-cycle.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     resolve: { data: TableResolver },
     canActivate: [YourGuardGuard]
   },
+  { path: 'life-cycle', component: LifeCycleComponent },
   { path: '', redirectTo: '/table', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponentComponent },
 
