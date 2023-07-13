@@ -18,6 +18,7 @@ export class UserService {
   login(user: any): Observable<any> {
     return this.http.post(`${this.loginURL}/auth/login`, user)
   }
+
   get isLogin() {
     let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;

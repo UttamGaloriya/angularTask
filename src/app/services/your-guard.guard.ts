@@ -19,15 +19,16 @@ export class YourGuardGuard implements CanActivate, CanLoad {
     this.router.navigateByUrl('/account/login')
     return false;
   }
-  //can activate child method for lazy loading of modules in Angular
+
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let token = localStorage.getItem('access-token')
     if (token == null) {
       return true
+    } else {
+      this.router.navigateByUrl('/table')
     }
-    this.router.navigateByUrl('/table')
     return false;
   }
 }

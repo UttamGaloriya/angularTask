@@ -9,14 +9,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) {
+  }
 
   ngOnInit(): void {
-
-    if (this.userService.isLogin) {
+    let token = localStorage.getItem('access-token')
+    if (token != null) {
       this.router.navigateByUrl('/table')
-    } else {
-      this.router.navigateByUrl('/account/login')
     }
   }
 

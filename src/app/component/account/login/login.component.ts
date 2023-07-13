@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
 
       username: ['', [Validators.required, this.validateUser]],
       password: ['', [Validators.required,
-      //  Validators.minLength(8),
+      Validators.minLength(6),
       Validators.maxLength(40),
-        // Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
+      Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/)
       ]]
 
     })
