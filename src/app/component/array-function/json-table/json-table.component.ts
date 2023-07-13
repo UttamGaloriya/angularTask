@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiData } from 'src/app/api-data';
 import { ViewDialogBoxComponent } from '../../view-dialog-box/view-dialog-box.component';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-json-table',
@@ -14,12 +15,13 @@ import { Subscription } from 'rxjs/internal/Subscription';
 export class JsonTableComponent implements OnInit {
   subscription: Subscription | undefined
   dataSource!: MatTableDataSource<any>;
+
   displayedColumns: string[] = ['position', 'name', 'username', 'website', 'email', 'phone', 'action'];
 
-  constructor(private user: UserService, public dialog: MatDialog) { }
+  constructor(private user: UserService, public dialog: MatDialog, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.subscription = this.user.getUserList().subscribe((res) => this.dataSource = new MatTableDataSource<any>(res))
+    this.dataSource = new MatTableDataSource<any>(this.route.snapshot.data.data)
   }
 
   openDialog(data: ApiData): void {
@@ -29,8 +31,8 @@ export class JsonTableComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
-    this.subscription?.unsubscribe()
-    console.log("destroyed")
+  logout() {
+    localStorage.removeItem('access-token')
+    this.router.navigateByUrl('/account/login')
   }
 }

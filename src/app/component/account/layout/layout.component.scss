@@ -1,0 +1,7 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+ .navbar .example-spacer .link{
+    margin-left: 16px;color: #ffffff;text-decoration: none;
+    &:hover{text-decoration: underline;}
+  }

@@ -1,43 +1,33 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class YourGuardGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
-  constructor(private router: Router) { }
+export class YourGuardGuard implements CanActivate, CanLoad {
+  constructor(private router: Router, private userServices: UserService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let token = localStorage.getItem('authToken')
-    if (token == null) {
+    let token = localStorage.getItem('access-token')
+    if (token != null) {
       return true
     }
-    this.router.navigateByUrl('/lazy')
+    this.router.navigateByUrl('/account/login')
     return false;
   }
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
-  canDeactivate(
-    component: unknown,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
+  //can activate child method for lazy loading of modules in Angular
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let token = localStorage.getItem('authToken')
-    if (token != null) {
-      console.log("working")
+    let token = localStorage.getItem('access-token')
+    if (token == null) {
       return true
     }
+    this.router.navigateByUrl('/table')
     return false;
   }
 }

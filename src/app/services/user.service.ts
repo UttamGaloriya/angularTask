@@ -8,9 +8,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   private baseURL = 'https://jsonplaceholder.typicode.com';
+  private loginURL = "https://dummyjson.com";
   constructor(private http: HttpClient) { }
+
   getUserList(): Observable<any> {
     return this.http.get(`${this.baseURL}/users`)
   }
 
+  login(user: any): Observable<any> {
+    return this.http.post(`${this.loginURL}/auth/login`, user)
+  }
+  get isLogin() {
+    let authToken = localStorage.getItem('access_token');
+    return authToken !== null ? true : false;
+  }
 }

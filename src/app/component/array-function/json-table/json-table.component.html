@@ -1,5 +1,5 @@
+<app-navbar></app-navbar>
 <mat-card class="table-container">
-
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <!--- Note that these columns can be defined in any order.
@@ -51,4 +51,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <div class="table-page-button">
+
+        <button type="button" (click)="logout()" mat-raised-button color="primary">LogOut</button>
+    </div>
 </mat-card>

@@ -7,18 +7,20 @@ import { PageNotFoundComponentComponent } from './component/page-not-found-compo
 import { YourGuardGuard } from './services/your-guard.guard';
 import { TopComponent } from './routing/top/top.component';
 import { NewsResolver } from './routing/news.resolver';
+import { TableResolver } from './services/table.resolver';
 
 const routes: Routes = [
-  { path: 'table', component: JsonTableComponent, canActivate: [YourGuardGuard] },
-  { path: 'first', component: FirstComponent, canActivate: [YourGuardGuard] },
-  { path: 'second', component: SecondComponent, canActivate: [YourGuardGuard] },
-  { path: 'lazy', loadChildren: () => import('./routing/lazy-loading/lazy-loading.module').then(m => m.LazyLoadingModule), canLoad: [YourGuardGuard] },
-  { path: '', redirectTo: '/first', pathMatch: 'full' },
   {
-    path: 'top',
-    component: TopComponent,
-    resolve: { message: NewsResolver }
+    path: 'account', loadChildren: () => import('./component/account/account.module').then(m => m.AccountModule)
+    , canLoad: [YourGuardGuard]
   },
+  {
+    path: 'table',
+    component: JsonTableComponent,
+    resolve: { data: TableResolver },
+    canActivate: [YourGuardGuard]
+  },
+  { path: '', redirectTo: '/table', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponentComponent },
 
 ];
