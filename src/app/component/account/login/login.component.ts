@@ -13,18 +13,16 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   hide: boolean = false;
   constructor(private fb: FormBuilder, private userServices: UserService, private route: ActivatedRoute, private router: Router) { }
+
   ngOnInit(): void {
     this.form = this.fb.group({
-
       username: ['', [Validators.required, this.validateUser]],
       password: ['', [Validators.required,
-      Validators.minLength(6),
       Validators.maxLength(40),
-      Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/)
       ]]
-
     })
   }
+
   validateUser(control: FormControl) {
     const trimmedValue = control.value.trim();
     if (trimmedValue === '') {
@@ -38,13 +36,13 @@ export class LoginComponent implements OnInit {
     }
     return null;
   }
+
   get f(): { [key: string]: AbstractControl } { return this.form.controls; }
 
   onSubmit() {
     console.log(this.form.value)
     this.userServices.login(this.form.value).subscribe((res) => { localStorage.setItem('access-token', res.token), this.router.navigateByUrl('/table') }
     )
-    this.router.navigateByUrl('/table')
   }
 
 }
