@@ -35,6 +35,7 @@ export class YourGuardGuard implements CanActivate, CanActivateChild, CanDeactiv
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let token = localStorage.getItem('authToken')
     if (token != null) {
+      console.log("working")
       return true
     }
     return false;
