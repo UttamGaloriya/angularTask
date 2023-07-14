@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 export class LifeCycleComponent implements OnChanges {
 
   @Input() data: string = 'uttam galoriya'
+  @Output() newItemEvent = new EventEmitter<string>();
 
   constructor() { console.log("constructor call") }
 
@@ -32,5 +33,12 @@ export class LifeCycleComponent implements OnChanges {
   }
   ngAfterContentChecked() {
     console.log("content change")
+  }
+
+
+  //output event
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
+    console.log(value)
   }
 }

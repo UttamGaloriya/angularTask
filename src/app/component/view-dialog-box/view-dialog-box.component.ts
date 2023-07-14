@@ -19,6 +19,6 @@ export class ViewDialogBoxComponent implements OnInit {
     console.log(this.data)
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }
