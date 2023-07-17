@@ -19,6 +19,7 @@ import { LifeCycleComponent } from './component/life-cycle/life-cycle.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './component/list/list.component';
 import { SectionComponent } from './component/section/section.component';
+import { ConfirmComponent } from './component/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SectionComponent } from './component/section/section.component';
     TopComponent,
     LifeCycleComponent,
     ListComponent,
-    SectionComponent
+    SectionComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

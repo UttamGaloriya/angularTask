@@ -22,6 +22,9 @@ export class UserService {
   updateUser(user: userObj, id: number): Observable<any> {
     return this.http.put(`${this.baseURL}/users/${id}`, user)
   }
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`${this.baseURL}/users/${id}`)
+  }
 
   login(user: any): Observable<any> {
     return this.http.post(`${this.loginURL}/auth/login`, user)

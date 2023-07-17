@@ -22,7 +22,7 @@
                                 <mat-icon color="primary">edit</mat-icon>
                                 <span>Edit</span>
                             </button>
-                            <button mat-menu-item>
+                            <button mat-menu-item (click)="delete(user)">
                                 <mat-icon color="warn">delete</mat-icon>
                                 <span>Delete</span>
                             </button>
@@ -31,7 +31,7 @@
                     </span>
                 </div>
             </div>
-            <app-section [user]="user" (newCancelEvent)="cancel()" class="user-form" *ngIf="editIndex==i">
+            <app-section [user]="user" (newCancelEvent)="cancel()" (newSubmitEvent)="submit($event ,user.id)" class="user-form" *ngIf="editIndex==i">
             </app-section>
         </li>
     </ol>

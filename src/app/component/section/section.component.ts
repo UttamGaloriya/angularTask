@@ -14,7 +14,7 @@ export interface userObj {
 export class SectionComponent implements OnInit {
   form!: FormGroup;
   title = "Section Title";
-
+  @Output() newSubmitEvent = new EventEmitter<unknown>();
   @Output() newCancelEvent = new EventEmitter<unknown>();
   @Input() user: userObj = {
     name: '',
@@ -32,17 +32,7 @@ export class SectionComponent implements OnInit {
   }
 
   submit() {
-    if (this.form.valid) {
-      console.log("Form submitted");
-      console.log(this.form.value);
-      this.userServices.updateUser(this.form.value, this.user.id).subscribe(
-        (res) => { console.log(res), this.userServices.getUserList().subscribe((res) => { console.log(res) }) },
-        error => console.log(error),
-        () => console.log("done")
-      )
-    } else {
-      alert('Please fill all fields');
-    }
+    this.newSubmitEvent.emit(this.form)
   }
 
   cancel() {
