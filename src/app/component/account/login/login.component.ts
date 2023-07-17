@@ -15,6 +15,11 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private userServices: UserService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.loginForm()
+  }
+
+
+  loginForm() {
     this.form = this.fb.group({
       username: ['', [Validators.required, this.validateUser]],
       password: ['', [Validators.required,
@@ -41,8 +46,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value)
-    this.userServices.login(this.form.value).subscribe((res) => { localStorage.setItem('access-token', res.token), this.router.navigateByUrl('/table') }
-    )
+    if (this.form.valid) {
+      this.userServices.login(this.form.value).subscribe((res) => { localStorage.setItem('access-token', res.token), this.router.navigateByUrl('/table') }
+      )
+    }
   }
-
 }

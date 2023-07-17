@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ApiData } from 'src/app/api-data';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmComponent } from '../confirm/confirm.component';
-export interface userObj {
+export interface UserObj {
   name: string;
   username: string;
   id: number
@@ -16,13 +16,7 @@ export interface userObj {
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  editIndex: number = -1
   userList$!: Subscription;
-  userobj: userObj = {
-    name: "uttam galoriya",
-    username: "uttam",
-    id: 1
-  }
   userList!: ApiData[];
   constructor(private userServices: UserService, public dialog: MatDialog) { }
 
@@ -34,7 +28,11 @@ export class ListComponent implements OnInit {
   //user list call
   userListCall() {
     this.userList$ = this.userServices.getUserList().subscribe(
-      (response) => { this.userList = response },
+      (response) => {
+        this.userList = response,
+          this.userList.map((res) => res.isEditable = false)
+        console.log(this.userList)
+      },
       error => console.log("Error Occurred while fetching data"),
       () => console.log('User list fetched successfully')
     )
@@ -50,7 +48,7 @@ export class ListComponent implements OnInit {
           console.log(this.userList);
         },
         error => console.log(error),
-        () => this.editIndex = -1
+        () => console.log("complete")
       )
 
     } else {
@@ -60,9 +58,15 @@ export class ListComponent implements OnInit {
 
 
   //edit function 
-  edit(index: number) {
-    this.editIndex = index
+  edit(user: ApiData) {
+    this.userList.map((res) => res.isEditable = false)
+    let index = this.userList.findIndex((res) => user.id == res.id);
+    let newUser = this.userList[index]
+    newUser.isEditable = true
+    this.userList[index] = newUser
   }
+
+
   delete(user: ApiData) {
     this.dialog.open(ConfirmComponent, {
       data: user,
@@ -77,21 +81,21 @@ export class ListComponent implements OnInit {
         )
         let index = this.userList.findIndex((res) => user.id == res.id);
         this.userList.splice(index, 1)
-      } else {
-
       }
     })
   }
 
   //cancel function
   cancel() {
-    this.editIndex = -1
+    this.userList.map((res) => res.isEditable = false)
   }
+
   localUpdate(res: ApiData, id: number) {
     let index = this.userList.findIndex((res) => id == res.id);
     let newUser = this.userList[index]
     newUser.name = res.name;
     newUser.username = res.username
+    newUser.isEditable = false
     this.userList[index] = newUser
   }
 
@@ -100,3 +104,5 @@ export class ListComponent implements OnInit {
     this.userList$.unsubscribe()
   }
 }
+
+

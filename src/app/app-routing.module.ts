@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JsonTableComponent } from './component/array-function/json-table/json-table.component';
-import { FirstComponent } from './routing/first/first.component';
-import { SecondComponent } from './routing/second/second.component';
 import { PageNotFoundComponentComponent } from './component/page-not-found-component/page-not-found-component.component';
 import { YourGuardGuard } from './services/your-guard.guard';
-import { TopComponent } from './routing/top/top.component';
-import { NewsResolver } from './routing/news.resolver';
 import { TableResolver } from './services/table.resolver';
 import { LifeCycleComponent } from './component/life-cycle/life-cycle.component';
 import { ListComponent } from './component/list/list.component';

@@ -3,6 +3,7 @@
 .list{padding: 16px 16px;border: 1px solid #000;}
 .list-title span,.list-details span{font-size: 20px;width: 100%;}
 .list-span{width: 100%;font-size: 16px;}
-// .user-form{width: 100%;border: 1px solid #000;padding: 10px;}
+.user-form{width: 100%;}
 li{list-style: none;}
 .list-details-container{width: 100%;display: flex;}
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {height: 100%;}

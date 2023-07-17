@@ -5,4 +5,5 @@ export interface ApiData {
     id: number,
     phone: string,
     website: string
+    isEditable?: Boolean
 }
