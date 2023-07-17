@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="list-title">
+        <span>Name</span>
+        <span>User Name</span>
+        <span>
+            Action
+        </span>
+    </div>
+    <ol role="list">
+        <li role="listitem" *ngFor=" let user of userList ,let i=index" class="mat-list">
+            <div class="list-details-container">
+                <div class="list-details" *ngIf="editIndex!=i">
+                    <span>{{user.name}}</span>
+                    <span>{{user.username}}</span>
+                    <span>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="edit(i)">
+                                <mat-icon color="primary">edit</mat-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon color="warn">delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+
+                        </mat-menu>
+                    </span>
+                </div>
+            </div>
+            <app-section [user]="user" (newCancelEvent)="cancel()" class="user-form" *ngIf="editIndex==i">
+            </app-section>
+        </li>
+    </ol>
+</div>

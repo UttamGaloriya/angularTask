@@ -19,7 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSortModule } from '@angular/material/sort';
-
+import { MatListModule } from '@angular/material/list';
 
 
 const data = [
@@ -40,7 +40,8 @@ const data = [
   MatCheckboxModule,
   MatSlideToggleModule,
   MatExpansionModule,
-  MatSortModule
+  MatSortModule,
+  MatListModule
 
 ];
 

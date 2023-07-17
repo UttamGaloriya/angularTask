@@ -26,9 +26,7 @@ export class JsonTableComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<any>(this.route.snapshot.data.data);
     console.log(this.route.snapshot.data.data)
-
   }
-
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -46,6 +44,7 @@ export class JsonTableComponent implements OnInit {
     localStorage.removeItem('access-token')
     this.router.navigateByUrl('/account/login')
   }
+
   applyFilter(event: Event) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace

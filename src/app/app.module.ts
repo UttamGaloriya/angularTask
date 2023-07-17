@@ -17,6 +17,8 @@ import { NavbarComponent } from './routing/navbar/navbar.component';
 import { TopComponent } from './routing/top/top.component';
 import { LifeCycleComponent } from './component/life-cycle/life-cycle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListComponent } from './component/list/list.component';
+import { SectionComponent } from './component/section/section.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PageNotFoundComponentComponent,
     NavbarComponent,
     TopComponent,
-    LifeCycleComponent
+    LifeCycleComponent,
+    ListComponent,
+    SectionComponent
   ],
   imports: [
     BrowserModule,

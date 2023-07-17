@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+export interface userObj {
+  name: string;
+  username: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +17,10 @@ export class UserService {
 
   getUserList(): Observable<any> {
     return this.http.get(`${this.baseURL}/users`)
+  }
+
+  updateUser(user: userObj, id: number): Observable<any> {
+    return this.http.put(`${this.baseURL}/users/${id}`, user)
   }
 
   login(user: any): Observable<any> {
