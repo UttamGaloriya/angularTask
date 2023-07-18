@@ -6,7 +6,7 @@ import { ApiData } from 'src/app/api-data';
 import { ViewDialogBoxComponent } from '../../view-dialog-box/view-dialog-box.component';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-json-table',
@@ -20,12 +20,17 @@ export class JsonTableComponent implements OnInit {
   @HostListener('window:scroll', ['$event']) click() {
     console.log("working")
   }
-
+  currentStyles: Record<string, string> = {
+    'background': 'rgb(163 236 236)',
+    'text-align': 'center',
+    'letter-spacing': '1px',
+    'font-size': '16px',
+  }
   constructor(private user: UserService, public dialog: MatDialog, private route: ActivatedRoute, private router: Router) { }
   @ViewChild(MatSort) sort!: MatSort;
+
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<any>(this.route.snapshot.data.data);
-    console.log(this.route.snapshot.data.data)
   }
 
   ngAfterViewInit() {

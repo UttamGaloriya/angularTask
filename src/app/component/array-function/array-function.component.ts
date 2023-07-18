@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, from } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-array-function',
@@ -52,14 +52,10 @@ export class ArrayFunctionComponent {
     //unshift
     var unshiftArray = array.unshift(1, 2, 3)
     console.log(`${unshiftArray} is un shifted `, array)
-
-
   }
 
-
-
   //observable Method
-  observalMethod() {
+  observableMethod() {
     //map and filter in rxjs
     let newArray$ = this.numberArr.pipe(
       filter((res: number) => res % 2 === 0),

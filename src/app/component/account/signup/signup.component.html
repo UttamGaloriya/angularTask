@@ -1,8 +1,7 @@
 <div class="container login-container">
     <mat-card>
-        <h2 class="sub-heading">Login</h2>
+        <h2 class="sub-heading">Register</h2>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
 
             <!-- user name  -->
             <mat-form-field appearance="outline" class="max-100">
@@ -13,9 +12,8 @@
                     are not allowed</mat-error>
                 <mat-error *ngIf="f.username.errors?.invalidInput"> Do Not use special characters</mat-error>
             </mat-form-field>
-
-
             <!-- password -->
+
             <mat-form-field appearance="outline" class="max-100">
                 <mat-label>password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
@@ -27,21 +25,18 @@
                     <mat-error *ngIf="f.password.errors?.spacesOnly && !f.password.errors?.required ">Error:
                         Only spaces
                         are not allowed</mat-error>
-                    <mat-error *ngIf="f.password.errors.minlength">Minmum leangth 8 Digit</mat-error>
-                    <mat-error *ngIf="f.password.errors.maxlength">Max leangth 40 Digit</mat-error>
+                    <mat-error *ngIf="f.password.errors.minlength">Minimum length 8 Digit</mat-error>
+                    <mat-error *ngIf="f.password.errors.maxlength">Max length 40 Digit</mat-error>
                     <mat-error *ngIf="f.password.errors.pattern">password must be minimum 8 digit
                         lowercase,uppercase,number andSpecial characters</mat-error>
                 </mat-error>
             </mat-form-field>
 
-
             <!-- button  -->
             <div class="button-div">
-                <p>Not Account? <a routerLink="/account/signup" color="accent">Sign Up</a></p>
-                <button mat-flat-button color="primary" type="submit">Login</button>
+                <p>Already Account? <a routerLink="/account/login" color="accent">Login</a></p>
+                <button mat-flat-button color="primary" type="submit">Signup</button>
             </div>
         </form>
     </mat-card>
-    <p>kminchelle</p>
-    <p>0lelplR</p>
 </div>

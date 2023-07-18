@@ -1,14 +1,10 @@
 <app-navbar></app-navbar>
 <mat-card class="container">
-
     <div class="list-title">
         <span>Name</span>
         <span>User Name</span>
-        <span>
-            Action
-        </span>
+        <span> Action</span>
     </div>
-
     <mat-list role="list">
         <mat-list-item role="listitem" *ngFor=" let user of userList ,let i=index" class="mat-list">
             <div class="list-details-container" *ngIf="!user.isEditable">
@@ -36,6 +32,4 @@
             </app-section>
         </mat-list-item>
     </mat-list>
-
-
 </mat-card>

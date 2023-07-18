@@ -5,22 +5,20 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class SignupComponent implements OnInit {
   form!: FormGroup;
   hide: boolean = false;
-  constructor(private fb: FormBuilder, private userServices: UserService, private router: Router, private snackBar: SnackBarService) { }
+
+  constructor(private fb: FormBuilder, private router: Router, private userServices: UserService, private snackBar: SnackBarService) { }
 
   ngOnInit(): void {
-    this.loginForm()
+    this.signUpForm()
   }
-
-
-  loginForm() {
+  signUpForm() {
     this.form = this.fb.group({
       username: ['', [Validators.required, this.validateUser]],
       password: ['', [Validators.required,
@@ -46,12 +44,11 @@ export class LoginComponent implements OnInit {
   get f(): { [key: string]: AbstractControl } { return this.form.controls; }
 
   onSubmit() {
-    console.log(this.form.value)
     if (this.form.valid) {
-      this.userServices.login(this.form.value).subscribe(
-        (res) => { localStorage.setItem('access-token', res.token), this.router.navigateByUrl('/table') },
-        (error) => { console.log(error), this.snackBar.showSnackBar('Invalid Login', 'OK', 'error') },
-        () => { this.snackBar.showSnackBar('Your login Successful', 'OK', 'success') }
+      this.userServices.signup(this.form.value).subscribe(
+        (res) => { console.log(res), this.router.navigateByUrl('/account/login') },
+        (error) => { console.log(error), this.snackBar.showSnackBar('Invalid registration', 'OK', 'error') },
+        () => { this.snackBar.showSnackBar('Your registration was Successful', 'OK', 'success') }
       )
     }
   }

@@ -30,6 +30,10 @@ export class UserService {
     return this.http.post(`${this.loginURL}/auth/login`, user)
   }
 
+  signup(user: any): Observable<any> {
+    return this.http.post(`${this.loginURL}/users/add`, user)
+  }
+
   get isLogin() {
     let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;
