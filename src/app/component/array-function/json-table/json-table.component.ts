@@ -45,10 +45,6 @@ export class JsonTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe((res) => { console.log(res) })
   }
 
-  logout() {
-    localStorage.removeItem('access-token')
-    this.router.navigateByUrl('/account/login')
-  }
 
   applyFilter(event: Event) {
     let filterValue = (event.target as HTMLInputElement).value;

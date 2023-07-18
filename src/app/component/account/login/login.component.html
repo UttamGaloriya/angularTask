@@ -27,8 +27,8 @@
                     <mat-error *ngIf="f.password.errors?.spacesOnly && !f.password.errors?.required ">Error:
                         Only spaces
                         are not allowed</mat-error>
-                    <mat-error *ngIf="f.password.errors.minlength">Minmum leangth 8 Digit</mat-error>
-                    <mat-error *ngIf="f.password.errors.maxlength">Max leangth 40 Digit</mat-error>
+                    <mat-error *ngIf="f.password.errors.minlength">Minimum length 8 Digit</mat-error>
+                    <mat-error *ngIf="f.password.errors.maxlength">Max length 40 Digit</mat-error>
                     <mat-error *ngIf="f.password.errors.pattern">password must be minimum 8 digit
                         lowercase,uppercase,number andSpecial characters</mat-error>
                 </mat-error>

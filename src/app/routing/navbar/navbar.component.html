@@ -3,4 +3,12 @@
         <a routerLink="/table" class="link">Table</a>
         <a routerLink="/list" class="link">list</a>
     </span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">
+            <span>Logout</span>
+        </button>
+    </mat-menu>
 </mat-toolbar>

@@ -12,12 +12,12 @@ import { UserService } from 'src/app/services/user.service';
 export class SignupComponent implements OnInit {
   form!: FormGroup;
   hide: boolean = false;
-
   constructor(private fb: FormBuilder, private router: Router, private userServices: UserService, private snackBar: SnackBarService) { }
 
   ngOnInit(): void {
     this.signUpForm()
   }
+
   signUpForm() {
     this.form = this.fb.group({
       username: ['', [Validators.required, this.validateUser]],
