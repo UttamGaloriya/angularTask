@@ -20,12 +20,35 @@ export class SignupComponent implements OnInit {
 
   signUpForm() {
     this.form = this.fb.group({
+      firstName: ['', [Validators.required, this.validateUser]],
+      lastName: ['', [Validators.required, this.validateUser]],
+      gender: ['', [Validators.required]],
       username: ['', [Validators.required, this.validateUser]],
       password: ['', [Validators.required,
       Validators.maxLength(40),
-      ]]
+      ]],
+      confirmPassword: ['', [Validators.required]],
+    }, {
+      validator: this.ConfirmedValidator('password', 'confirmPassword')
     })
   }
+
+  //confirmedValidator
+  ConfirmedValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    }
+  }
+
 
   validateUser(control: FormControl) {
     const trimmedValue = control.value.trim();
@@ -43,9 +66,11 @@ export class SignupComponent implements OnInit {
 
   get f(): { [key: string]: AbstractControl } { return this.form.controls; }
 
+  // x : any
   onSubmit() {
     if (this.form.valid) {
-      this.userServices.signup(this.form.value).subscribe(
+      const { confirmPassword, ...form } = this.form.value
+      this.userServices.signup(form).subscribe(
         (res) => { console.log(res), this.router.navigateByUrl('/account/login') },
         (error) => { console.log(error), this.snackBar.showSnackBar('Invalid registration', 'OK', 'error') },
         () => { this.snackBar.showSnackBar('Your registration was Successful', 'OK', 'success') }

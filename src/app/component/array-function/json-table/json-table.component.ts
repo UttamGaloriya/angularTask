@@ -52,5 +52,13 @@ export class JsonTableComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-
+  get mobileQuery() {
+    let screenWidth = window.innerWidth;
+    console.log(screenWidth)
+    if (screenWidth > 700) {
+      return 'side'
+    } else {
+      return 'over'
+    }
+  }
 }

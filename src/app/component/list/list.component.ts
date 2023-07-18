@@ -89,6 +89,15 @@ export class ListComponent implements OnInit {
   ngOnDestroy() {
     this.userList$.unsubscribe()
   }
+  get mobileQuery() {
+    let screenWidth = window.innerWidth;
+    console.log(screenWidth)
+    if (screenWidth > 700) {
+      return 'side'
+    } else {
+      return 'over'
+    }
+  }
 }
 
 

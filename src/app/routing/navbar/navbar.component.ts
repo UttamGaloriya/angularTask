@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,11 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
+  @Output() newToggleEvent = new EventEmitter<unknown>();
   constructor(private router: Router) { }
 
   logout() {
     localStorage.removeItem('access-token')
     this.router.navigateByUrl('/account/login')
+  }
+
+  toggle() {
+    this.newToggleEvent.emit()
   }
 }

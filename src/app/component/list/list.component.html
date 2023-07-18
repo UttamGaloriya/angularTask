@@ -1,35 +1,38 @@
-<app-navbar></app-navbar>
-<mat-card class="container">
-    <div class="list-title">
-        <span>Name</span>
-        <span>User Name</span>
-        <span> Action</span>
-    </div>
-    <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor=" let user of userList ,let i=index" class="mat-list">
-            <div class="list-details-container" *ngIf="!user.isEditable">
-                <div class="list-details">
-                    <span>{{user.name}}</span>
-                    <span>{{user.username}}</span>
-                    <span>
-                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                            <mat-icon>more_vert</mat-icon>
+<mat-drawer-container class="example-container" autosize>
+    <app-navbar (newToggleEvent)="drawer.toggle()"></app-navbar>
+    <mat-drawer #drawer class="example-sidenav" [mode]="mobileQuery">
+        <mat-list class="side-list" role="list">
+            <mat-list-item role="listitem"> <a routerLink="/table" class="link" routerLinkActive="active">Table</a></mat-list-item>
+            <mat-list-item role="listitem"><a routerLink="/list" class="link" routerLinkActive="active">List</a></mat-list-item>
+        </mat-list>
+    </mat-drawer>
+
+    <mat-card class="container">
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor=" let user of userList ,let i=index" class="mat-list">
+                <span mat-list-icon class="mat-list-icon-span">{{i+1}}</span>
+                <div mat-line *ngIf="!user.isEditable">{{user.name}}</div>
+                <div mat-line *ngIf="!user.isEditable">{{user.username}}</div>
+
+                <span *ngIf="!user.isEditable">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="edit(user)">
+                            <mat-icon color="primary">edit</mat-icon>
+                            <span>Edit</span>
                         </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="edit(user)">
-                                <mat-icon color="primary">edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item (click)="delete(user)">
-                                <mat-icon color="warn">delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
-                    </span>
-                </div>
-            </div>
-            <app-section [user]="user" (newCancelEvent)="cancel()" (newSubmitEvent)="submit($event ,user.id)" class="user-form" *ngIf="user.isEditable">
-            </app-section>
-        </mat-list-item>
-    </mat-list>
-</mat-card>
+                        <button mat-menu-item (click)="delete(user)">
+                            <mat-icon color="warn">delete</mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </mat-menu>
+                </span>
+
+                <app-section mat-line [user]="user" (newCancelEvent)="cancel()" (newSubmitEvent)="submit($event ,user.id)" class="user-form" *ngIf="user.isEditable">
+                </app-section>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</mat-drawer-container>

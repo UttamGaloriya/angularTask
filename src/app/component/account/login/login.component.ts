@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.userServices.login(this.form.value).subscribe(
         (res) => { localStorage.setItem('access-token', res.token), this.router.navigateByUrl('/table') },
-        (error) => { console.log(error), this.snackBar.showSnackBar('Invalid Login', 'OK', 'error') },
+        (error) => { console.log(error.error.message), this.snackBar.showSnackBar(error.error.message, 'OK', 'error') },
         () => { this.snackBar.showSnackBar('Your login Successful', 'OK', 'success') }
       )
     }

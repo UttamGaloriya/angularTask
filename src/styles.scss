@@ -9,3 +9,35 @@ a{text-decoration: none;font-size: 16px;}
 .success.mat-snack-bar-container{background: rgb(0, 184, 0);color:#ffffff ;}
 .info.mat-snack-bar-container{background: #fff265;color:#000000 ;}
 .mat-simple-snackbar-action button {color: #fff;}
+
+.side-list a{
+    color: #FFF;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 10px 10px;
+    width: 100%;
+    border-radius: 18px;
+    text-align: center;
+ }
+ .side-list a:hover{
+     background: #aac0fc52;
+ }
+ .side-list .active{
+     color: #ee7373;
+ }
+   .example-container{
+     height: 100vh;
+   }
+   .example-sidenav-content {
+     display: flex;
+     height: 100%;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .example-sidenav {
+     background: #3F51B5;
+     width: 250px;
+     height: 100vh;
+     padding: 20px;
+   }
