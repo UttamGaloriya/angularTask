@@ -82,7 +82,7 @@
             <!-- button  -->
             <div class="button-div">
                 <p>Already Account? <a routerLink="/account/login" color="accent">Login</a></p>
-                <button mat-flat-button color="primary" type="submit">Signup</button>
+                <button mat-flat-button color="primary" type="submit" [disabled]="!form.valid">Signup</button>
             </div>
         </form>
     </mat-card>

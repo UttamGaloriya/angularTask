@@ -91,7 +91,6 @@ export class ListComponent implements OnInit {
   }
   get mobileQuery() {
     let screenWidth = window.innerWidth;
-    console.log(screenWidth)
     if (screenWidth > 700) {
       return 'side'
     } else {
