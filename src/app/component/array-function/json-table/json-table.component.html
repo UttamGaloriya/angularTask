@@ -1,57 +1,48 @@
-<mat-drawer-container class="example-container" autosize>
-    <app-navbar (newToggleEvent)="drawer.toggle()"></app-navbar>
-    <mat-drawer #drawer class="example-sidenav" [mode]="mobileQuery">
-        <mat-list class="side-list" role="list">
-            <mat-list-item role="listitem"> <a routerLink="/table" class="link" routerLinkActive="active">Table</a></mat-list-item>
-            <mat-list-item role="listitem"><a routerLink="/list" class="link" routerLinkActive="active">List</a></mat-list-item>
-        </mat-list>
-    </mat-drawer>
-    <mat-card class="table-container">
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-        </mat-form-field>
-        <div class="myTable">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+<mat-card class="table-container">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+    <div class="myTable">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-                <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                </ng-container>
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
 
-                <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
 
-                <ng-container matColumnDef="username">
-                    <th mat-header-cell *matHeaderCellDef> username </th>
-                    <td mat-cell *matCellDef="let element" [ngStyle]="currentStyles"> {{element.username}} </td>
-                </ng-container>
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef> username </th>
+                <td mat-cell *matCellDef="let element" [ngStyle]="currentStyles"> {{element.username}} </td>
+            </ng-container>
 
-                <ng-container matColumnDef="website">
-                    <th mat-header-cell *matHeaderCellDef> website </th>
-                    <td mat-cell *matCellDef="let element"> {{element.website}} </td>
-                </ng-container>
+            <ng-container matColumnDef="website">
+                <th mat-header-cell *matHeaderCellDef> website </th>
+                <td mat-cell *matCellDef="let element"> {{element.website}} </td>
+            </ng-container>
 
-                <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef> email </th>
-                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-                </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
 
-                <ng-container matColumnDef="phone">
-                    <th mat-header-cell *matHeaderCellDef> phone </th>
-                    <td mat-cell *matCellDef="let element" [ngClass]="element.phone.length>=20 ? 'max-length':'min-length'"> {{element.phone}} </td>
-                </ng-container>
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> phone </th>
+                <td mat-cell *matCellDef="let element" [ngClass]="element.phone.length>=20 ? 'max-length':'min-length'"> {{element.phone}} </td>
+            </ng-container>
 
-                <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef> action </th>
-                    <td mat-cell *matCellDef="let element"> <button type="button" mat-icon-button (click)="openDialog(element)"><mat-icon>remove_red_eye</mat-icon></button> </td>
-                </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> action </th>
+                <td mat-cell *matCellDef="let element"> <button type="button" mat-icon-button (click)="openDialog(element)"><mat-icon>remove_red_eye</mat-icon></button> </td>
+            </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-            </table>
-        </div>
-    </mat-card>
-    <mat-drawer-container>
+        </table>
+    </div>
+</mat-card>

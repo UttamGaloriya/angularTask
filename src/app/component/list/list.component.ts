@@ -15,7 +15,9 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 export class ListComponent implements OnInit {
   userList$!: Subscription;
   userList!: ApiData[];
-  constructor(private userServices: UserService, public dialog: MatDialog, private snackBar: SnackBarService) { }
+  constructor(private userServices: UserService, public dialog: MatDialog, private snackBar: SnackBarService) {
+    console.log("list call")
+  }
   ngOnInit(): void {
     this.userListCall()
   }
@@ -27,7 +29,6 @@ export class ListComponent implements OnInit {
           this.userList.map((res) => res.isEditable = false)
       },
       error => console.log("Error Occurred while fetching data"),
-      () => console.log('User list fetched successfully')
     )
   }
 
@@ -89,14 +90,7 @@ export class ListComponent implements OnInit {
   ngOnDestroy() {
     this.userList$.unsubscribe()
   }
-  get mobileQuery() {
-    let screenWidth = window.innerWidth;
-    if (screenWidth > 700) {
-      return 'side'
-    } else {
-      return 'over'
-    }
-  }
+
 }
 
 

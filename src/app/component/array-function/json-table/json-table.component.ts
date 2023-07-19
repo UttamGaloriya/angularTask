@@ -26,7 +26,9 @@ export class JsonTableComponent implements OnInit {
     'letter-spacing': '1px',
     'font-size': '16px',
   }
-  constructor(private user: UserService, public dialog: MatDialog, private route: ActivatedRoute, private router: Router) { }
+  constructor(private user: UserService, public dialog: MatDialog, private route: ActivatedRoute, private router: Router) {
+    console.log("table call")
+  }
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
