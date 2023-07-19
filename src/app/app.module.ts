@@ -37,7 +37,8 @@ import { SidebarComponent } from './routing/sidebar/sidebar.component';
     ListComponent,
     SectionComponent,
     ConfirmComponent,
-    SidebarComponent
+    SidebarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,8 @@ import { SidebarComponent } from './routing/sidebar/sidebar.component';
     HttpClientModule,
     MaterialModuleModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

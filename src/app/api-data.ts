@@ -7,3 +7,7 @@ export interface ApiData {
     website: string
     isEditable?: Boolean
 }
+export interface TabsData {
+    title: string;
+    content: string;
+}
