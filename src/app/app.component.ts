@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularTask';
-
   get mobileQuery() {
     let screenWidth = window.innerWidth
     if (screenWidth > 700) {
@@ -16,7 +15,12 @@ export class AppComponent {
       return 'over'
     }
   }
-  toggle() {
-    console.log()
+  get show() {
+    let token = localStorage.getItem('access-token')
+    if (token == null) {
+      return false
+    }
+    return true
+
   }
 }
