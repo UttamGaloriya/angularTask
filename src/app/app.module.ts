@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ArrayFunctionComponent } from './component/array-function/array-function.component';
 import { JsonTableComponent } from './component/array-function/json-table/json-table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { ViewDialogBoxComponent } from './component/view-dialog-box/view-dialog-box.component';
 import { MaterialModuleModule } from './material-module/material-module.module';
@@ -22,6 +22,8 @@ import { SectionComponent } from './component/section/section.component';
 import { ConfirmComponent } from './component/confirm/confirm.component';
 import { SidebarComponent } from './routing/sidebar/sidebar.component';
 import { SharedModule } from './shared/shared.module';
+import { MyInterceptorService } from './services/my-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { SharedModule } from './shared/shared.module';
     SharedModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

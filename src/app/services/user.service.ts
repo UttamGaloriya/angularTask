@@ -13,6 +13,7 @@ export interface userObj {
 export class UserService {
   private baseURL = 'https://jsonplaceholder.typicode.com';
   private loginURL = "https://dummyjson.com";
+  private firebaseApiKey = "AIzaSyBd2qrxKb-n2ZFfo1HiwtF96SBwyhaDrEw"
   constructor(private http: HttpClient) { }
 
   getUserList(): Observable<any> {
@@ -26,8 +27,18 @@ export class UserService {
     return this.http.delete(`${this.baseURL}/users/${id}`)
   }
 
+  // login(user: any): Observable<any> {
+  //   return this.http.post(`${this.loginURL}/auth/login`, user)
+  // }
+
   login(user: any): Observable<any> {
-    return this.http.post(`${this.loginURL}/auth/login`, user)
+    const signInEndpoint = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.firebaseApiKey}`;
+    const signInData = {
+      email: user.username,
+      password: user.password,
+      returnSecureToken: true
+    };
+    return this.http.post(signInEndpoint, signInData)
   }
 
   signup(user: any): Observable<any> {

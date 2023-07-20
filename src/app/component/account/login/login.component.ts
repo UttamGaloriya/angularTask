@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
     if (trimmedValue === '') {
       return { spacesOnly: true };
     }
-    if (!/^[a-zA-Z0-9]+$/.test(trimmedValue)) {
-      return { invalidInput: true };
-    }
+    // if (!/^[a-zA-Z0-9]+$/.test(trimmedValue)) {
+    //   return { invalidInput: true };
+    // }
     if (trimmedValue !== control.value) {
       control.setValue(trimmedValue);
     }
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     console.log(this.form.value)
     if (this.form.valid) {
       this.userServices.login(this.form.value).subscribe(
-        (res) => { localStorage.setItem('access-token', res.token), this.router.navigateByUrl('/table') },
+        (res) => { console.log(res), localStorage.setItem('access-token', res.token), this.router.navigateByUrl('/table') },
         (error) => { console.log(error.error.message), this.snackBar.showSnackBar(error.error.message, 'OK', 'error') },
         () => { this.snackBar.showSnackBar('Your login Successful', 'OK', 'success') }
       )
