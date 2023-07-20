@@ -27,19 +27,19 @@ export class UserService {
     return this.http.delete(`${this.baseURL}/users/${id}`)
   }
 
-  // login(user: any): Observable<any> {
-  //   return this.http.post(`${this.loginURL}/auth/login`, user)
-  // }
-
   login(user: any): Observable<any> {
-    const signInEndpoint = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.firebaseApiKey}`;
-    const signInData = {
-      email: user.username,
-      password: user.password,
-      returnSecureToken: true
-    };
-    return this.http.post(signInEndpoint, signInData)
+    return this.http.post(`${this.loginURL}/auth/login`, user)
   }
+
+  // login(user: any): Observable<any> {
+  //   const signInEndpoint = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.firebaseApiKey}`;
+  //   const signInData = {
+  //     email: user.username,
+  //     password: user.password,
+  //     returnSecureToken: true
+  //   };
+  //   return this.http.post(signInEndpoint, signInData)
+  // }
 
   signup(user: any): Observable<any> {
     return this.http.post(`${this.loginURL}/users/add`, user)
