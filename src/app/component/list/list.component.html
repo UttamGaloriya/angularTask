@@ -3,7 +3,7 @@
         <mat-list-item role="listitem" *ngFor=" let user of userList ,let i=index" class="mat-list">
             <span mat-list-icon class="mat-list-icon-span">{{i+1}}</span>
             <div mat-line *ngIf="!user.isEditable">{{user.name}}</div>
-            <div mat-line *ngIf="!user.isEditable">{{user.username}}</div>
+            <div mat-line *ngIf="!user.isEditable" appHighlight>{{user.username}}</div>
 
             <span *ngIf="!user.isEditable">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">

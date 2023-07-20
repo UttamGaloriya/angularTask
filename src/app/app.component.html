@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
     <app-navbar (newToggleEvent)="drawer.toggle()"></app-navbar>
-    <mat-drawer #drawer class="example-sidenav" [mode]="mobileQuery">
+    <mat-drawer #drawer class="example-sidenav" [mode]="mobileQuery" opened>
         <app-sidebar></app-sidebar>
     </mat-drawer>
     <router-outlet></router-outlet>

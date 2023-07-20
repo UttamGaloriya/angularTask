@@ -21,6 +21,7 @@ import { ListComponent } from './component/list/list.component';
 import { SectionComponent } from './component/section/section.component';
 import { ConfirmComponent } from './component/confirm/confirm.component';
 import { SidebarComponent } from './routing/sidebar/sidebar.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SidebarComponent } from './routing/sidebar/sidebar.component';
     MaterialModuleModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule
 
   ],
   providers: [],
