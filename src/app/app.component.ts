@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'angularTask';
   get mobileQuery() {
     let screenWidth = window.innerWidth
-    if (screenWidth > 700) {
+    if (screenWidth > 900) {
       return 'side'
     } else {
       return 'over'
@@ -21,6 +21,5 @@ export class AppComponent {
       return false
     }
     return true
-
   }
 }
