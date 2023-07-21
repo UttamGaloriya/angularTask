@@ -1,6 +1,7 @@
 <div class="container">
 
     <mat-card>
+        <h1 *ngIf="!this.myProduct">NO Products</h1>
         <mat-grid-list [cols]="1" rowHeight="300px" gutterSize="50">
             <mat-grid-tile *ngFor="let product of myProduct">
                 <mat-grid-tile-header>{{product.title}}</mat-grid-tile-header>
@@ -25,7 +26,7 @@
             </mat-grid-tile>
         </mat-grid-list>
         <mat-card-actions align="end">
-            <button mat-flat-button color="primary" class="buyNow">
+            <button mat-flat-button color="primary" class="buyNow" (click)="buyNow()">
                 Buy Now
             </button>
         </mat-card-actions>

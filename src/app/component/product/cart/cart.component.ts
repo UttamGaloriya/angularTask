@@ -41,7 +41,10 @@ export class CartComponent implements OnInit {
     this.myProduct.splice(index, 1)
   }
   buyNow() {
-    console.log("buy now complete")
+    console.log('done')
+    localStorage.removeItem("productCart")
+    this.myProduct = null
+    // this.products.updateCart()
   }
 
 }

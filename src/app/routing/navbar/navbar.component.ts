@@ -22,7 +22,11 @@ export class NavbarComponent {
 
   myCartNumber() {
     this.products.getCartData().subscribe(
-      (res) => { this.cartNumber = res.length }
+      (res) => {
+        if (res.length > 0) {
+          this.cartNumber = res.length;
+        }
+      }
     )
   }
 

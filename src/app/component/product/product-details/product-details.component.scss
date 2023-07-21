@@ -6,12 +6,7 @@
     .mat-grid-tile .mat-grid-tile-footer{
         background:#fff;
     }
-    .container .mat-paginator-container {
-        width: 100%;
-        background: #2c54ad;
-        color: #FFF;
-        font-size: 19px;
-    }
+    .container.mat-paginator-outer-container { width: 100%;background: #2c54ad; color: #FFF; font-size: 19px;}
     //product
 .product-img{width: 300px;}
 .product-button{

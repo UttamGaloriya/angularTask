@@ -12,7 +12,7 @@ export class ProductsService {
   private api = "https://dummyjson.com/products"
   constructor(private http: HttpClient, private snackbar: SnackBarService) { }
 
-  productCart = new BehaviorSubject<any>([{}])
+  productCart = new BehaviorSubject<any>('')
   updateCart(data: any) {
     this.productCart.next(data)
   }
@@ -52,9 +52,34 @@ export class ProductsService {
       cartProducts.push(product)
       console.log("cart products", product);
       localStorage.setItem('productCart', JSON.stringify(cartProducts))
-      sessionStorage.removeItem('')
     }
     this.updateCart(productCart)
     this.snackbar.showSnackBar('product added successfully', 'ok', 'success')
+  }
+  addBuyProduct(product: any) {
+
+    const productCart = localStorage.getItem('productBuy')
+
+    if (productCart !== null) {
+      const cartProducts = JSON.parse(productCart)
+
+      for (let item of product) {
+        cartProducts.push(cartProducts)
+      }
+      console.log(cartProducts)
+      // localStorage.setItem('productBuy', JSON.stringify(cartProducts))
+    } else {
+      let cartProducts = []
+      for (let item of product) {
+        cartProducts.push(product)
+      }
+      console.log(cartProducts)
+      console.log("cart products", product);
+      // localStorage.setItem('productBuy', JSON.stringify(cartProducts))
+
+    }
+    // localStorage.removeItem('productCart')
+    this.updateCart('')
+    this.snackbar.showSnackBar('Buy successfully', 'ok', 'success')
   }
 }
