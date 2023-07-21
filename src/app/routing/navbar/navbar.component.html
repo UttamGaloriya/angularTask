@@ -6,7 +6,9 @@
         <!-- <a routerLink="/table" class="link">Table</a>
         <a routerLink="/list" class="link">list</a> -->
     </span>
-    <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+    <button mat-icon-button>
+        <mat-icon [matBadge]="cartNumber" matBadgeColor="warn" routerLink="product/cart">add_shopping_cart</mat-icon>
+    </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
     </button>

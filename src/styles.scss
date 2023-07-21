@@ -3,6 +3,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .container{max-width: 1400px;margin: 0 auto;}
+p{margin: 0;}
 a{text-decoration: none;font-size: 16px;}
 //snack bar
 .error.mat-snack-bar-container{background: #cc0000;color:#ffffff ;}
@@ -51,3 +52,14 @@ a{text-decoration: none;font-size: 16px;}
  display: flex !important;
  justify-content: center;
 }
+//product
+.product-img{width: 300px;}
+// .mat-grid-tile .mat-grid-tile-header, .mat-grid-tile .mat-grid-tile-footer{
+// justify-content: space-around;
+//     background: rgb(16 79 255 / 82%);
+// }
+// .mat-grid-tile .mat-grid-tile-footer{
+//     background:#fff;
+// }
+
+    .product-details P{margin:0;padding: 8px 16px;font-size: 16px;}

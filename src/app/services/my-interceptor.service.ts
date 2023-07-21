@@ -20,8 +20,6 @@ export class MyInterceptorService {
         Authorization: `${authToken}`,
       }
     });
-    console.log(authReq)
-    // console.log(req)
     return next.handle(authReq);
   }
 }

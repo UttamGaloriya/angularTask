@@ -1,0 +1,32 @@
+.mat-grid-tile .mat-grid-tile-header, .mat-grid-tile .mat-grid-tile-footer{
+    justify-content: space-around;
+        background: rgb(16 79 255 / 82%);
+    }
+    .mat-grid-tile .mat-grid-tile-footer{
+        background:#fff;
+    }
+    .select-button{display: none;}
+    .quality-number{
+        padding: 7px;
+        font-size: 18px;
+        border: 1px solid;
+        background: rgba(16, 79, 255, 0.82);
+        border-radius: 50%;
+        width: 20px;
+        text-align: center;
+        color: #fff;
+    }
+    .product-details {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+    }
+    .product-button{
+        
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        gap: 30px;
+
+    }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,6 +10,13 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class SidebarComponent {
   @ViewChild('drawer') drawer!: MatDrawer;
   @Output() newToggleEvent = new EventEmitter<unknown>();
+
+  constructor(private product: ProductsService) {
+
+  }
+  ngOnInit() {
+
+  }
 
   toggleDrawer() {
     this.newToggleEvent.emit()

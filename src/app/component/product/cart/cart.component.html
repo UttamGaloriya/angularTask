@@ -1,0 +1,34 @@
+<div class="container">
+
+    <mat-card>
+        <mat-grid-list [cols]="1" rowHeight="300px" gutterSize="50">
+            <mat-grid-tile *ngFor="let product of myProduct">
+                <mat-grid-tile-header>{{product.title}}</mat-grid-tile-header>
+                <div class="product-details">
+                    <img [src]="product.thumbnail" alt="" class="product-img">
+                    <p><strong>Price:</strong>&nbsp;{{product.price}}</p>
+                    <div class="product-button">
+                        <div class="select-button">
+                        </div>
+                        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="remove(product)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+                        <p class="quality-number">{{product.quality}}</p>
+                        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="add(product)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button mat-flat-button color="warn" aria-label="Example icon button with a home icon" (click)="removeItem(product)">
+                            remove item
+                        </button>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-card-actions align="end">
+            <button mat-flat-button color="primary" class="buyNow">
+                Buy Now
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+</div>

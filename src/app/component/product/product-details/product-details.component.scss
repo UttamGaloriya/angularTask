@@ -1,0 +1,37 @@
+.mat-grid-tile .mat-grid-tile-header,
+ .mat-grid-tile .mat-grid-tile-footer{
+    justify-content: space-around;
+        background: rgb(16 79 255 / 82%);
+    }
+    .mat-grid-tile .mat-grid-tile-footer{
+        background:#fff;
+    }
+    .container .mat-paginator-container {
+        width: 100%;
+        background: #2c54ad;
+        color: #FFF;
+        font-size: 19px;
+    }
+    //product
+.product-img{width: 300px;}
+.product-button{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+.product-button button{
+    width: 40%;
+}
+.mat-grid-tile .mat-grid-tile-header, .mat-grid-tile .mat-grid-tile-footer{
+justify-content: space-around;
+    background: rgb(16 79 255 / 82%);
+}
+.mat-grid-tile .mat-grid-tile-footer{
+    background:#fff;
+}
+.product-details{display: flex;
+    flex-direction: column;
+    justify-content: space-between;}
+    .product-details P{margin:0;padding: 8px 16px;font-size: 16px;}
+
+    .img-placeholder{background: #000;}

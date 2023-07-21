@@ -1,3 +1,22 @@
 <div class="container">
-    <app-tabs [TabsData]="productData"></app-tabs>
+    <!-- <app-tabs [TabsData]="productData"></app-tabs> -->
+    <mat-card>
+        <mat-grid-list [cols]="colsNumber" rowHeight="400px" gutterSize="50">
+            <mat-grid-tile *ngFor="let product of product">
+                <mat-grid-tile-header>{{product.title}}</mat-grid-tile-header>
+                <div class="product-details">
+                    <img [src]="product.thumbnail?product.thumbnail:'./assets/images/5c875d10d89662c9af5f59fedf59ce2b.gif'" alt="" class="product-img">
+                    <p><strong>Price:</strong>&nbsp;{{product.price}}</p>
+                </div>
+
+                <mat-grid-tile-footer>
+                    <div class="product-button">
+                        <button mat-flat-button color="accent" (click)="addCart(product)">Add to Cart</button>
+                    </div>
+                </mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageChange($event)" aria-label="Select page">
+        </mat-paginator>
+    </mat-card>
 </div>
