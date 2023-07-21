@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
 
   myCartProduct() {
     this.products.getCartData().subscribe(
-      (res) => { this.myProduct = res, console.log(res) }
+      (res) => { this.myProduct = res }
     )
   }
   remove(product: any) {
@@ -41,9 +41,7 @@ export class CartComponent implements OnInit {
     this.myProduct.splice(index, 1)
   }
   buyNow() {
+    console.log("buy now complete")
+  }
 
-  }
-  ngOnDestroy() {
-    this.productList$.unsubscribe()
-  }
 }

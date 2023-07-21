@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   private api = "https://dummyjson.com/products"
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private snackbar: SnackBarService) { }
 
   productCart = new BehaviorSubject<any>([{}])
   updateCart(data: any) {
@@ -36,11 +37,16 @@ export class ProductsService {
   }
 
   addCartProduct(product: any) {
+
     const productCart = localStorage.getItem('productCart')
     if (productCart !== null) {
       const cartProducts = JSON.parse(productCart)
-      cartProducts.push(product)
-      localStorage.setItem('productCart', JSON.stringify(cartProducts))
+      let index = cartProducts.findIndex((res: any) => product.id === res.id);
+      console.log(index)
+      if (index < 0) {
+        cartProducts.push(product)
+        localStorage.setItem('productCart', JSON.stringify(cartProducts))
+      }
     } else {
       let cartProducts = []
       cartProducts.push(product)
@@ -49,6 +55,6 @@ export class ProductsService {
       sessionStorage.removeItem('')
     }
     this.updateCart(productCart)
-    alert('product added successfully')
+    this.snackbar.showSnackBar('product added successfully', 'ok', 'success')
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { TabsData } from 'src/app/api-data';
@@ -11,11 +11,30 @@ import { tempProduct } from 'src/app/services/temp.product';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  colsNumber: number = 4
+  //host
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    let screenWidth = (event.target as Window).innerWidth;
+    if (screenWidth > 1200) {
+      this.colsNumber = 4
+    }
+    else if (screenWidth > 900) {
+      this.colsNumber = 3
+    } else if (screenWidth > 600) {
+      this.colsNumber = 2
+    } else if (screenWidth > 100) {
+      this.colsNumber = 1
+    } else {
+      this.colsNumber = 1
+    }
+  }
   // MatPaginator Inputs
   length!: number;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  myPage: any = {
+  myPage: PageEvent = {
+    length: 0,
     pageIndex: 0,
     pageSize: 10
   }
@@ -27,7 +46,6 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productCall(this.myPage)
-
   }
   productCall(page: PageEvent) {
     this.productList$ = this.products.allProduct(page).subscribe(
@@ -46,20 +64,6 @@ export class ProductDetailsComponent implements OnInit {
     this.product = tempProduct
     this.productCall(event)
   }
-  get colsNumber() {
-    console.log("working")
-    let screenWidth = window.innerWidth;
-    if (screenWidth > 1200) {
-      return 4
-    }
-    else if (screenWidth > 900) {
-      return 3
-    } else if (screenWidth > 600) {
-      return 2
-    } else if (screenWidth > 100) {
-      return 1
-    } else {
-      return 1
-    }
-  }
+
+
 }
