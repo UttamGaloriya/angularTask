@@ -1,0 +1,31 @@
+.first-page{
+    display: flex;
+    flex-direction: column;
+}
+.example-full-width{
+    width: 100%;
+    // padding: 0px 16px;
+}
+.example-full-width-100{
+    width: 100%;
+    // padding: 0px 16px;
+}                
+.next-step-button{
+    margin-top: 24px;
+    display: flex;
+    justify-content:space-between;
+
+}
+.cost-fild{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.cost-fild .mat-form-field , .mat-radio-group{
+    width: 45%;
+}
+.add-button{display: flex;flex-direction: column;align-items: stretch;}
+.radio-group  .mat-radio-button{margin-right: 16px;}
+.date-fild .mat-form-field{
+    width: 90%;
+}

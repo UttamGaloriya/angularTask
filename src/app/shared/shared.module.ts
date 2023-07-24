@@ -12,6 +12,6 @@ import { HighlightDirective } from './highlight.directive';
     CommonModule,
     MaterialModuleModule
   ],
-  exports: [TabsComponent, HighlightDirective]
+  exports: [TabsComponent, HighlightDirective, MaterialModuleModule]
 })
 export class SharedModule { }

@@ -1,3 +1,178 @@
 <div class="container">
-    <app-tabs></app-tabs>
+    <!-- <app-tabs></app-tabs> -->
+    <mat-card>
+        <mat-stepper #stepper>
+            <!-- step 1  -->
+            <mat-step errorMessage="Name is required.">
+                <ng-template matStepLabel>Project Details</ng-template>
+                <form [formGroup]="projectForm" class="first-page">
+                    <div formGroupName="projectDetails">
+                        <mat-form-field appearance="fill" class="example-full-width">
+                            <mat-label>Organization</mat-label>
+                            <mat-select formControlName="organization">
+                                <mat-option *ngFor="let food of foods" [value]="food.value">
+                                    {{food.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="example-full-width">
+                            <mat-label>category</mat-label>
+                            <mat-select formControlName="category">
+                                <mat-option *ngFor="let food of foods" [value]="food.value">
+                                    {{food.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="example-full-width">
+                            <mat-label>activity</mat-label>
+                            <mat-select formControlName="activity">
+                                <mat-option *ngFor="let food of foods" [value]="food.value">
+                                    {{food.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Title</mat-label>
+                            <input matInput formControlName="title">
+                        </mat-form-field>
+                        <div formGroupName="age">
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Minimum Age</mat-label>
+                                <input type="number" matInput formControlName="minimum">
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Maximum Age</mat-label>
+                                <input type="number" matInput formControlName="maximum">
+                            </mat-form-field>
+                        </div>
+
+                        <mat-form-field class="example-full-width-100" appearance="fill">
+                            <mat-label>Address 2</mat-label>
+                            <textarea matInput formControlName="description"></textarea>
+                        </mat-form-field>
+                        <div class="next-step-button">
+                            <button mat-flat-button matStepperNext color="primary">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <!-- step 2  -->
+            <mat-step>
+                <ng-template matStepLabel>Project Gallery</ng-template>
+                <form [formGroup]="projectForm" class="second-page">
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>Project Name</mat-label>
+                        <mat-select formControlName="projectName">
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+
+                <input type="file" (change)="onFileChange($event)" multiple>
+                <div class="next-step-button">
+                    <button mat-flat-button matStepperPrevious color="primary">Back</button>
+                    <button mat-flat-button matStepperNext color="primary">Next</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Project Cost</ng-template>
+                <form [formGroup]="projectForm" class="third-page">
+                    <h2> Project cost</h2>
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>Project Name</mat-label>
+                        <mat-select formControlName="projectName">
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div formArrayName="projectCost">
+
+                        <div *ngFor="let cost of getProjectCost.controls;let i=index" [formGroupName]="i" class="cost-fild">
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Enter Weeks</mat-label>
+                                <input type="number" matInput formControlName="duration">
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Enter Cost</mat-label>
+                                <input type="number" matInput formControlName="cost">
+                            </mat-form-field>
+
+                            <button type="button" mat-flat-button color="warn" (click)="removeProjectCost(i)" *ngIf="getProjectCost.length>1">Delete</button>
+                        </div>
+                        <div class="add-button">
+                            <button type="button" mat-flat-button color="primary" (click)="addProjectCost()">ADD ROW</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="next-step-button">
+                    <button mat-flat-button matStepperPrevious color="primary">Back</button>
+                    <button mat-flat-button matStepperNext color="primary">Next</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Project Includes</ng-template>
+                <form [formGroup]="projectForm" class="third-page">
+                    <h2>Include Check</h2>
+                    <div formArrayName="projectIncludes">
+                        <div *ngFor="let cost of getProjectIncludes.controls;let i=index" [formGroupName]="i" class="cost-fild">
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Include description</mat-label>
+                                <input matInput formControlName="description">
+                            </mat-form-field>
+
+                            <mat-radio-group aria-label="Select an option" formControlName="includesCondition" class="radio-group">
+                                <mat-radio-button value="include">Include</mat-radio-button>
+                                <mat-radio-button value="notInclude">Not Include</mat-radio-button>
+                            </mat-radio-group>
+
+                            <button type="button" mat-flat-button color="warn" (click)="removeProjectIncludes(i)" *ngIf="getProjectIncludes.length>1">Delete</button>
+                        </div>
+                        <div class="add-button">
+                            <button type="button" mat-flat-button color="primary" (click)="addProjectIncludes()">ADD ROW</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="next-step-button">
+                    <button mat-flat-button matStepperPrevious color="primary">Back</button>
+                    <button mat-flat-button matStepperNext color="primary">Next</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Project out your Dates</ng-template>
+                <form [formGroup]="projectForm" class="five-page">
+                    <h2>Include Check</h2>
+                    <div formArrayName="projectDate">
+                        <div *ngFor="let cost of getProjectDate.controls;let i=index" [formGroupName]="i" class="date-fild cost-fild">
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                            <button type="button" mat-flat-button color="warn" (click)="removeProjectDate(i)" *ngIf="getProjectDate.length>1">Delete</button>
+                        </div>
+                        <div class="add-button">
+                            <button type="button" mat-flat-button color="primary" (click)="addProjectDate()">ADD ROW</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="next-step-button">
+                    <button mat-flat-button matStepperPrevious color="primary">Back</button>
+                    <button mat-flat-button (click)="submit()" color="primary">Finish</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </mat-card>
 </div>

@@ -44,7 +44,6 @@ export class CartComponent implements OnInit {
     console.log('done')
     localStorage.removeItem("productCart")
     this.myProduct = null
-    // this.products.updateCart()
   }
 
 }
