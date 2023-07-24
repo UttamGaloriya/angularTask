@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 interface Food {
   value: string;
   viewValue: string;
@@ -10,7 +11,6 @@ interface Food {
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-  @Input('') projectName: string = ''
   projectForm!: FormGroup;
   foods: Food[] = [
     { value: 'steak-0', viewValue: 'Steak' },
@@ -18,7 +18,7 @@ export class UserDetailsComponent implements OnInit {
     { value: 'tacos-2', viewValue: 'Tacos' }
   ];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     this.projectForm = this.fb.group(
@@ -27,16 +27,14 @@ export class UserDetailsComponent implements OnInit {
           organization: ['', Validators.required],
           category: ['', Validators.required],
           activity: ['', Validators.required],
-          title: ['', Validators.required],
-          age: this.fb.group({
-            minimum: ['', Validators.required],
-            maximum: ['', Validators.required],
-          }),
+          title: ['', [Validators.required, this.validateString]],
+          minimum: ['', Validators.required],
+          maximum: ['', Validators.required],
           description: ['', Validators.required],
 
         }),
-        projectName: [this.projectName, Validators.required],
-        projectFile: ['', Validators.required],
+        projectName: ['', Validators.required],
+        projectFile: [[], Validators.required],
         projectCost: this.fb.array([this.projectCost()]),
         projectIncludes: this.fb.array([this.projectIncludes()]),
         projectDate: this.fb.array([this.projectDate()])
@@ -49,8 +47,8 @@ export class UserDetailsComponent implements OnInit {
   //project 
   projectCost() {
     return this.fb.group({
-      cost: ['', Validators.required],
-      duration: ['', Validators.required]
+      cost: ['', [Validators.required]],
+      duration: ['', [Validators.required]]
     })
   }
   get getProjectCost() {
@@ -65,7 +63,7 @@ export class UserDetailsComponent implements OnInit {
   //
   projectIncludes() {
     return this.fb.group({
-      description: ['', Validators.required],
+      description: ['', [Validators.required, this.validateString]],
       includesCondition: ['', Validators.required]
     })
   }
@@ -87,22 +85,38 @@ export class UserDetailsComponent implements OnInit {
   get getProjectDate() {
     return this.projectForm.controls['projectDate'] as FormArray
   }
+
   addProjectDate() {
     this.getProjectDate.push(this.projectDate())
   }
+
   removeProjectDate(index: number) {
     this.getProjectDate.removeAt(index)
   }
-  //
+
   onFileChange(event: any) {
-    // const file = event.target.files[0];
     for (let file of event.target.files) {
       console.log(file)
     }
-
+    this.projectForm.get('projectFile')?.setValue(event)
   }
+
+  projectNameFunction(event: any) {
+    this.projectForm.get('projectName')?.setValue(event.value)
+  }
+
   submit() {
     console.log("Submitted");
+    this.userService.addUserData(this.projectForm.value)
     console.log(this.projectForm.value)
+  }
+
+
+  validateString(control: FormControl) {
+    const trimmedValue = control.value.trim();
+    if (trimmedValue === '') {
+      return { spacesOnly: true };
+    }
+    return null;
   }
 }
