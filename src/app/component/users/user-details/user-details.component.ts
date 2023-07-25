@@ -12,6 +12,8 @@ interface Food {
 })
 export class UserDetailsComponent implements OnInit {
   projectForm!: FormGroup;
+  projectDetailsForm!: FormGroup;
+
   foods: Food[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -21,6 +23,9 @@ export class UserDetailsComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
+    this.myForm()
+  }
+  myForm() {
     this.projectForm = this.fb.group(
       {
         projectDetails: this.fb.group({
@@ -32,18 +37,20 @@ export class UserDetailsComponent implements OnInit {
           maximum: ['', Validators.required],
           description: ['', Validators.required],
 
+        }, {
+          validator: this.ageValidator('minimum', 'maximum')
         }),
         projectName: ['', Validators.required],
         projectFile: [[], Validators.required],
         projectCost: this.fb.array([this.projectCost()]),
         projectIncludes: this.fb.array([this.projectIncludes()]),
         projectDate: this.fb.array([this.projectDate()])
-      }
-
-    )
+      });
+    this.projectDetailsForm = this.projectForm.get('projectDetails') as FormGroup;
   }
-
-
+  get getProjectDetails() {
+    return this.projectForm.get('projectDetails') as FormGroup;
+  }
   //project 
   projectCost() {
     return this.fb.group({
@@ -98,7 +105,7 @@ export class UserDetailsComponent implements OnInit {
     for (let file of event.target.files) {
       console.log(file)
     }
-    this.projectForm.get('projectFile')?.setValue(event)
+    this.projectForm.get('projectFile')?.setValue(event.target.files)
   }
 
   projectNameFunction(event: any) {
@@ -118,5 +125,19 @@ export class UserDetailsComponent implements OnInit {
       return { spacesOnly: true };
     }
     return null;
+  }
+  ageValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+        return;
+      }
+      if (control.value >= matchingControl.value) {
+        matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    }
   }
 }

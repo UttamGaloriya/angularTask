@@ -3,7 +3,7 @@
     <mat-card>
         <mat-stepper #stepper>
             <!-- step 1  -->
-            <mat-step>
+            <mat-step [stepControl]="projectDetailsForm">
                 <ng-template matStepLabel>Project Details</ng-template>
                 <form [formGroup]="projectForm" class="first-page">
                     <div formGroupName="projectDetails">
@@ -67,6 +67,7 @@
                             <mat-error *ngIf="this.projectForm.get('projectDetails.maximum')?.hasError('required')">
                                 Enter a Maximum age
                             </mat-error>
+                            <mat-error *ngIf="this.projectForm.get('projectDetails.maximum')?.errors?.confirmedValidator">enter bigger then minimum age</mat-error>
                         </mat-form-field>
 
 
@@ -102,7 +103,7 @@
                 </form>
                 <div>
                     <input type="file" (change)="onFileChange($event)" multiple>
-                    <mat-error *ngIf="this.projectForm.get('projectFile')?.hasError('required')">
+                    <mat-error *ngIf="this.projectForm.get('projectFile')?.hasError('required')&& projectForm.get('projectFile')?.touched">
                         Upload File
                     </mat-error>
                 </div>
@@ -182,7 +183,7 @@
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Include description</mat-label>
                                 <input matInput formControlName="description">
-                                <mat-error *ngIf="includes.get('description')?.invalid && (includes.get('description')?.dirty || includes.get('description')?.touched)">
+                                <mat-error *ngIf="includes.get('description')?.invalid">
                                     <span *ngIf="includes.get('description')?.errors?.required">Enter description </span>
                                     <span *ngIf="includes.get('description')?.errors?.spacesOnly && !includes.get('description')?.errors?.required">Description cannot be only spaces.</span>
                                 </mat-error>
@@ -192,12 +193,13 @@
                             <mat-radio-group aria-label="Select an option" formControlName="includesCondition" class="radio-group">
                                 <mat-radio-button value="include">Include</mat-radio-button>
                                 <mat-radio-button value="notInclude">Not Include</mat-radio-button>
-                                <mat-error *ngIf="includes.get('includesCondition')?.invalid">
-                                    Choose any One
+                                <mat-error *ngIf="includes.get('includesCondition')?.invalid && includes.get('includesCondition')?.touched">
+
+                                    <span *ngIf="includes.get('includesCondition')?.errors?.required">Choose any One </span>
                                 </mat-error>
                             </mat-radio-group>
 
-                            <button type="button" mat-flat-button color="warn" (click)="removeProjectIncludes(i)" *ngIf="getProjectIncludes.length>1">Delete</button>
+                            <button type=" button" mat-flat-button color="warn" (click)="removeProjectIncludes(i)" *ngIf="getProjectIncludes.length>1">Delete</button>
                         </div>
                         <div class="add-button">
                             <button type="button" mat-flat-button color="primary" (click)="addProjectIncludes()">ADD ROW</button>

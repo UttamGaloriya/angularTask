@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SnackBarService } from './snack-bar.service';
+import { ProjectData } from '../shared/user-data';
 
 export interface userObj {
   name: string;
@@ -41,19 +42,34 @@ export class UserService {
     let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;
   }
+  myNewId() {
+    const projectData = localStorage.getItem(' projectData')
+    if (projectData !== null) {
+      let highId: number = -1;
+      const list = JSON.parse(projectData)
+      list.forEach((res: ProjectData) => {
+        if (res.id > highId) {
+          highId = res.id
+        }
+      });
+      return highId + 1
+    } else {
+      return 1
+    }
 
-  addUserData(product: any) {
-
-    const userData = localStorage.getItem('userData')
-    if (userData !== null) {
-      const userInfo = JSON.parse(userData)
-      userInfo.push(product)
-      localStorage.setItem('userData', JSON.stringify(userInfo))
+  }
+  addUserData(data: ProjectData) {
+    data.id = this.myNewId()
+    const projectData = localStorage.getItem(' projectData')
+    if (projectData !== null) {
+      const userInfo = JSON.parse(projectData)
+      userInfo.push(data)
+      localStorage.setItem(' projectData', JSON.stringify(userInfo))
     } else {
       let userInfo = []
-      userInfo.push(product)
-      console.log("cart products", product);
-      localStorage.setItem('userData', JSON.stringify(userInfo))
+      data.id = this.myNewId()
+      userInfo.push(data)
+      localStorage.setItem(' projectData', JSON.stringify(userInfo))
     }
 
     this.snackbar.showSnackBar('Data added successfully', 'ok', 'success')
