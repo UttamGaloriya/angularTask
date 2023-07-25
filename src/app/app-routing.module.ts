@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'product', loadChildren: () => import('./component/product/product.module').then(m => m.ProductModule), canLoad: [GuardGuard] },
   { path: 'setting', loadChildren: () => import('./component/settings/settings.module').then(m => m.SettingsModule), canLoad: [GuardGuard] },
   { path: 'user', loadChildren: () => import('./component/users/users.module').then(m => m.UsersModule), canLoad: [GuardGuard] },
+  { path: 'project', loadChildren: () => import('./component/project/project.module').then(m => m.ProjectModule), canLoad: [GuardGuard] },
   {
     path: 'table',
     component: JsonTableComponent,

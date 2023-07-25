@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
     <app-navbar (newToggleEvent)="drawer.toggle()" *ngIf="show"></app-navbar>
-    <mat-drawer #drawer class="example-sidenav" [mode]="mobileQuery" opened>
+    <mat-drawer #drawer class="example-sidenav" mode="over" opened>
         <app-sidebar *ngIf="show"></app-sidebar>
     </mat-drawer>
     <router-outlet></router-outlet>

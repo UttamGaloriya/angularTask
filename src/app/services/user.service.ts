@@ -42,7 +42,7 @@ export class UserService {
     let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;
   }
-  myNewId() {
+  projectGenerateId() {
     const projectData = localStorage.getItem(' projectData')
     if (projectData !== null) {
       let highId: number = -1;
@@ -58,8 +58,8 @@ export class UserService {
     }
 
   }
-  addUserData(data: ProjectData) {
-    data.id = this.myNewId()
+  addProjectData(data: ProjectData) {
+    data.id = this.projectGenerateId()
     const projectData = localStorage.getItem(' projectData')
     if (projectData !== null) {
       const userInfo = JSON.parse(projectData)
@@ -67,11 +67,10 @@ export class UserService {
       localStorage.setItem(' projectData', JSON.stringify(userInfo))
     } else {
       let userInfo = []
-      data.id = this.myNewId()
+      data.id = this.projectGenerateId()
       userInfo.push(data)
       localStorage.setItem(' projectData', JSON.stringify(userInfo))
     }
-
     this.snackbar.showSnackBar('Data added successfully', 'ok', 'success')
   }
 

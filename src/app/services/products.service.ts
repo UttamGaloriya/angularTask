@@ -25,8 +25,7 @@ export class ProductsService {
           const cartProducts = JSON.parse(productData)
           return [cartProducts];
         } else {
-          let myCart = ['']
-          return myCart;
+          return [];
         }
       })
     );
@@ -56,30 +55,20 @@ export class ProductsService {
     this.updateCart(productCart)
     this.snackbar.showSnackBar('product added successfully', 'ok', 'success')
   }
-  addBuyProduct(product: any) {
 
-    const productCart = localStorage.getItem('productBuy')
 
+  removeCartList(product: any) {
+    const productCart = localStorage.getItem('productCart')
     if (productCart !== null) {
       const cartProducts = JSON.parse(productCart)
-
-      for (let item of product) {
-        cartProducts.push(cartProducts)
-      }
-      console.log(cartProducts)
-      // localStorage.setItem('productBuy', JSON.stringify(cartProducts))
-    } else {
-      let cartProducts = []
-      for (let item of product) {
-        cartProducts.push(product)
-      }
-      console.log(cartProducts)
-      console.log("cart products", product);
-      // localStorage.setItem('productBuy', JSON.stringify(cartProducts))
-
+      let index = cartProducts.findIndex((res: any) => product.id === res.id);
+      cartProducts.splice(index, 1)
+      localStorage.setItem('productCart', JSON.stringify(cartProducts))
+      this.updateCart(cartProducts)
     }
-    // localStorage.removeItem('productCart')
-    this.updateCart('')
-    this.snackbar.showSnackBar('Buy successfully', 'ok', 'success')
   }
+
+
+
+
 }

@@ -8,7 +8,7 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  cartNumber!: number
+  cartNumber: number | undefined
   @Output() newToggleEvent = new EventEmitter<unknown>();
   constructor(private router: Router, private products: ProductsService) { }
 
@@ -23,8 +23,12 @@ export class NavbarComponent {
   myCartNumber() {
     this.products.getCartData().subscribe(
       (res) => {
+        console.log(res)
         if (res.length > 0) {
           this.cartNumber = res.length;
+        } else {
+          this.cartNumber = undefined
+          console.log(res)
         }
       }
     )
