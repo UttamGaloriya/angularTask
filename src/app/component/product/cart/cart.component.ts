@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -10,7 +11,8 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CartComponent implements OnInit {
   myProduct: any
   productList$!: Subscription;
-  constructor(private products: ProductsService) { }
+  amount: number | undefined
+  constructor(private products: ProductsService, private router: Router) { }
 
   ngOnInit(): void {
     this.myCartProduct()
@@ -18,8 +20,9 @@ export class CartComponent implements OnInit {
 
   myCartProduct() {
     this.products.getCartData().subscribe(
-      (res) => { this.myProduct = res }
+      (res) => { if (res.length >= 1) { this.myProduct = res } }
     )
+
   }
   remove(product: any) {
     let index = this.myProduct.findIndex((res: any) => product.id == res.id);
@@ -39,11 +42,18 @@ export class CartComponent implements OnInit {
     console.log("working")
     let index = this.myProduct.findIndex((res: any) => product.id == res.id);
     this.myProduct.splice(index, 1)
+    this.products.removeCartList(product)
+    if (this.myProduct.length == 0) {
+      this.myProduct = null
+    }
+
   }
   buyNow() {
     console.log('done')
     localStorage.removeItem("productCart")
+    this.products.updateCart(this.myProduct)
     this.myProduct = null
+    this.router.navigateByUrl('/list')
   }
 
 }
