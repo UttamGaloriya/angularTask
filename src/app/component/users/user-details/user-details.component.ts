@@ -46,7 +46,6 @@ export class UserDetailsComponent implements OnInit {
         projectIncludes: this.fb.array([this.projectIncludes()]),
         projectDate: this.fb.array([this.projectDate()])
       });
-    this.projectDetailsForm = this.projectForm.get('projectDetails') as FormGroup;
   }
   get getProjectDetails() {
     return this.projectForm.get('projectDetails') as FormGroup;
