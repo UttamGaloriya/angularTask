@@ -51,7 +51,7 @@ export class CartComponent implements OnInit {
   buyNow() {
     console.log('done')
     localStorage.removeItem("productCart")
-    this.products.updateCart(this.myProduct)
+    this.products.updateCartNumber()
     this.myProduct = null
     this.router.navigateByUrl('/list')
   }

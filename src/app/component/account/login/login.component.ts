@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
     if (trimmedValue === '') {
       return { spacesOnly: true };
     }
-    // if (!/^[a-zA-Z0-9]+$/.test(trimmedValue)) {
-    //   return { invalidInput: true };
-    // }
+    if (!/^[a-zA-Z0-9]+$/.test(trimmedValue)) {
+      return { invalidInput: true };
+    }
     if (trimmedValue !== control.value) {
       control.setValue(trimmedValue);
     }

@@ -69,6 +69,9 @@ export class ProductsService {
   }
 
 
-
+  updateCartNumber() {
+    const productCart = localStorage.setItem('productCart', '1')
+    this.updateCart(productCart)
+  }
 
 }
